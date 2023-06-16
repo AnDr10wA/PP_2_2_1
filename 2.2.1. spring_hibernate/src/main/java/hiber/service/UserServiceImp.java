@@ -1,5 +1,6 @@
 package hiber.service;
 
+import hiber.dao.CarDao;
 import hiber.dao.UserDao;
 import hiber.model.Car;
 import hiber.model.User;
@@ -12,8 +13,16 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
+
+   private final UserDao userDao;
+
+
+   private final CarDao carDao;
    @Autowired
-   private UserDao userDao;
+   public UserServiceImp(UserDao userDao, CarDao carDao) {
+      this.userDao = userDao;
+      this.carDao = carDao;
+   }
 
    @Transactional
    @Override
@@ -31,6 +40,17 @@ public class UserServiceImp implements UserService {
    @Override
    public User getUser(String model, int series){
       return userDao.getUser( model, series);
+   }
+   @Transactional
+   @Override
+   public void add(Car car) {
+      carDao.add(car);
+   }
+
+   @Transactional(readOnly = true)
+   @Override
+   public List<Car> listCars() {
+      return carDao.listCars();
    }
 
 }

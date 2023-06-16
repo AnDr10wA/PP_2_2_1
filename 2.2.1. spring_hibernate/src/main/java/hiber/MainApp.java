@@ -15,29 +15,25 @@ public class MainApp {
             new AnnotationConfigApplicationContext(AppConfig.class);
 
       UserService userService = context.getBean(UserService.class);
-      Car userCar = new Car("BMW", 3);
-//      Car userCar2 = new Car("BMW", 6);
-//      Car userCar3 = new Car("BMW", 7);
-//      Car userCar4 = new Car("BMW", 5);
-//      userService.add(new User("User1", "Lastname1", "user1@mail.ru", userCar));
-//
-//      userService.add(new User("User2", "Lastname2", "user2@mail.ru", userCar2));
-//      userService.add(new User("User3", "Lastname3", "user3@mail.ru", userCar3));
-//      userService.add(new User("User4", "Lastname4", "user4@mail.ru", userCar4));
+//      userService.add(new User("User1", "Lastname1", "user1@mail.ru", new Car("Mazda", 6)));
+//      userService.add(new User("User2", "Lastname2", "user2@mail.ru", new Car("BMW", 5)));
+//      userService.add(new User("User3", "Lastname3", "user3@mail.ru", new Car("BMW", 7)));
+//      userService.add(new User("User4", "Lastname4", "user4@mail.ru", new Car("Mercedes", 222)));
+
          User usert = userService.getUser("BMW", 5);
       System.out.println(usert.getFirstName());
       System.out.println(usert.getLastName());
-      User usert2 = userService.getUser("BMW", 7);
+      User usert2 = userService.getUser("Mercedes", 222);
       System.out.println(usert2.getFirstName());
       System.out.println(usert2.getLastName());
-//      List<User> users = userService.listUsers();
-//      for (User user : users) {
-//         System.out.println("Id = "+user.getId());
-//         System.out.println("First Name = "+user.getFirstName());
-//         System.out.println("Last Name = "+user.getLastName());
-//         System.out.println("Email = "+user.getEmail());
-//         System.out.println();
-//      }
+      List<User> users = userService.listUsers();
+      for (User user : users) {
+         System.out.println("Id = "+user.getId());
+         System.out.println("First Name = "+user.getFirstName());
+         System.out.println("Last Name = "+user.getLastName());
+         System.out.println("Email = "+user.getEmail());
+         System.out.println();
+      }
 
       context.close();
    }

@@ -18,16 +18,17 @@ public class User {
 
    @Column(name = "email")
    private String email;
-   @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "car_id")
-   private Car carUser;
+   @OneToOne
+   @MapsId
+   @JoinColumn(name = "cars_id")
+   private Car car;
 
    public Car getCarUser() {
-      return carUser;
+      return car;
    }
 
    public void setCarUser(Car carUser) {
-      this.carUser = carUser;
+      this.car = carUser;
    }
 
    public User() {}
@@ -36,7 +37,7 @@ public class User {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
-      this.carUser = carUser;
+      this.car = carUser;
    }
 
    public User(String firstName, String lastName, String email) {
